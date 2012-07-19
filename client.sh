@@ -24,8 +24,8 @@ else
     exists="yes"
 fi
 
-response=`curl --silent --fail -X POST -d @$filename -H "X-Exists: $exists" -H "X-Hostname: $hostname" $host:$port/$filename`
+response=`curl --silent --fail -X POST --data-binary @$filename -H "X-Exists: $exists" -H "X-Hostname: $hostname" $host:$port/$filename`
 responseCode=$?
 if [[ responseCode -eq 0 ]]; then
-    echo -n $response > $filename
+    echo -n "$response" > $filename
 fi

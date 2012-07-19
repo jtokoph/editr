@@ -29,9 +29,15 @@ var server = http.createServer(function(req, res){
                         // if the user actually saved a new file, or file already existed
                         // then send back the current state of the file
                         fs.readFile(tmpfile, 'utf8', function(err, str) {
-                            res.writeHead(200, {'Content-Type': 'text/plain'})
-                            res.end(str);
-                            fs.unlink(tmpfile);
+                            if (str == buffer) {
+                                // just 404 because nothing happened
+                                res.writeHead(404, {'Content-Type': 'text/plain'})
+                                res.end();
+                            } else {
+                                res.writeHead(200, {'Content-Type': 'text/plain'});
+                                res.end(str);
+                                fs.unlink(tmpfile);
+                            }
                         });
                     } else {
                         // otherwise just 404 because nothing happened
