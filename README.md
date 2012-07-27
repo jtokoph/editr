@@ -115,11 +115,15 @@ Setting bash variables strips trailing new lines. This makes sure they don't get
 
 cURL doesn't save empty responses (even with a status of 200). So if you zero out a file with your editor, cURL won't save your change.
 
-### Couldn't you do it this other way instead?
+### Couldn't you do it this way instead?
 
-[You could, couldn't you](https://help.github.com/articles/fork-a-repo)
+[You could, couldn't you...](https://help.github.com/articles/fork-a-repo)
 
 ## Disclaimer
 
 I've kinda tested this, so feel free to try it, but don't come crying to me if you wipe out your server configs. 
-Also, I have no idea what will happen if you try to edit binary files. 
+Also, I have no idea what will happen if you try to edit binary files. Open an issue if you want to bitch.
+
+## License
+
+[WTFPL](http://en.wikipedia.org/wiki/WTFPL)
