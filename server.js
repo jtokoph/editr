@@ -69,8 +69,13 @@ if (argv.background) {
                             // if the user actually saved a new file, or file already existed
                             // then send back the current state of the file
                             fs.readFile(tmpfile, 'utf8', function(err, str) {
-                                res.writeHead(200, {'Content-Type': 'text/plain'})
-                                res.end(str);
+                                res.writeHead(200, {
+                                    'Content-Type': 'text/plain',
+                                    'Content-Length': str.length + 1,
+                                    'Connection': 'close'
+                                });
+                                // this X makes sure that new lines are preserved on save
+                                res.end(str + 'X');
                                 fs.unlink(tmpfile);
                             });
                         } else {
@@ -84,6 +89,9 @@ if (argv.background) {
 
         // use utf8 for all requests (text editors are useless for binary files anyway)
         req.setEncoding('utf8');
+
+        // disable the default 2 minute timeout
+        req.connection.setTimeout(0);
 
         if (req.method == 'POST') {
             // if a post, its an attempt to edit

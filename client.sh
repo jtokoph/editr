@@ -67,5 +67,8 @@ response=`curl --silent --fail -X POST --data-binary @$filename -H "X-Exists: $e
 
 responseCode=$?
 if [[ responseCode -eq 0 ]]; then
-    echo -n "$response" > $filename
+    # Bash variables get trailing new lines removed
+    # The server adds a trailing character to preserve new lines
+    # here we strip away the extra character
+    echo -n "${response%X}" > $filename
 fi
