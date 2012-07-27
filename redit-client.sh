@@ -44,13 +44,13 @@ if [ "$filename" = "" ]; then
     exit 1
 fi
 
-if [ -d $filename ]; then
+if [ -d "$filename" ]; then
     echo "Cannot edit a directory"
     showusage
     exit 1
 fi
 
-if [ ! -e $filename ]; then
+if [ ! -e "$filename" ]; then
     exists="no"
 else
     exists="yes"
@@ -63,12 +63,12 @@ if [ -f "$filename" ] && [ ! -w "$filename" ]; then
     fi
 fi
 
-response=`curl --silent --fail -X POST --data-binary @$filename -H "X-Exists: $exists" -H "X-Hostname: $hostname" $host:$port/$filename`
+response=`curl --silent --fail -X POST --data-binary "@$filename" -H "X-Exists: $exists" -H "X-Hostname: $hostname" "$host:$port/$filename"`
 
 responseCode=$?
 if [[ responseCode -eq 0 ]]; then
     # Bash variables get trailing new lines removed
     # The server adds a trailing character to preserve new lines
     # here we strip away the extra character
-    echo -n "${response%X}" > $filename
+    echo -n "${response%X}" > "$filename"
 fi
