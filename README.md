@@ -73,6 +73,7 @@ Options:
 Environment variables:
 
 `REDIT_HOST` server hostname to connect to
+
 `REDIT_PORT` server port to connect to
 
 ```
