@@ -7,7 +7,7 @@ hostname=`hostname`
 force=false
 
 function showusage {
-    echo "Usage: $0 [-H hostname] [-p port] [-f] file-path
+    echo "Usage: $0 [-H hostname] [-p port] [-f] file
 
  -H  connect to host (default: $host)
  -p  port number to use for connection (default: $port)
