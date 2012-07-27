@@ -6,7 +6,7 @@ Edit remote files with TextMate, Sublime Text 2, Chocolat and more!
 
 **Server:** nodejs
 
-**Client:** bash, curl
+**Client:** bash, cURL
 
 ## Installation
 
@@ -96,3 +96,30 @@ Host *
 Host github.com
     ClearAllForwardings yes
 ```
+
+## Infrequently Asked Questions
+
+### Why Javascript?
+
+Because I wanted to use HTTP as the protocol and node makes it easy. I'm also a little bit obsessed with Javascript.
+
+### Ok smart ass, why HTTP then?
+
+I'm lazy and didn't want to impliment my own protocol, so I thought it would be easier. This way the client could just be cURL.
+
+### WTF is the extra "X" that gets appended to the response?
+
+Setting bash variables strips trailing new lines. This makes sure they don't get stripped. Don't worry though, because the client script removes it before saving.
+
+### Then why the hell didn't you just have cURL save the file?
+
+cURL doesn't save empty responses (even with a status of 200). So if you zero out a file with your editor, cURL won't save your change.
+
+### Couldn't you do it this other way instead?
+
+[You could, couldn't you](https://help.github.com/articles/fork-a-repo)
+
+## Disclaimer
+
+I've kinda tested this, so feel free to try it, but don't come crying to me if you wipe out your server configs. 
+Also, I have no idea what will happen if you try to edit binary files. 
