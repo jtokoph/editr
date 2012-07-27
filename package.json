@@ -1,6 +1,6 @@
 {
     "name" : "redit",
-    "version" : "0.1.0",
+    "version" : "0.1.1",
     "preferGlobal": "true",
     "description" : "Edit remote files with your local editor",
     "dependencies" : {
@@ -26,6 +26,7 @@
         "node" : ">=0.8"
     },
     "bin": {
-      "redit-server": "server.js"
+      "redit-server": "redit-server.js",
+      "redit-client.sh": "redit-client.sh"
     }
 }

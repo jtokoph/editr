@@ -99,7 +99,7 @@ if (argv.background) {
             req.on('data', onData);
         } else if (req.method == 'GET') {
             // get requests should return the client script
-            fs.readFile('client.sh', 'utf8', function(err, str) {
+            fs.readFile(__dirname + '/redit-client.sh', 'utf8', function(err, str) {
                 res.writeHead(200, {'Content-Type': 'text/plain'})
                 res.end(str);
             });
