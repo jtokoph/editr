@@ -23,7 +23,7 @@
         "url" : "http://jasontokoph.com"
     },
     "engine" : {
-        "node" : ">=0.6"
+        "node" : ">=0.8"
     },
     "bin": {
       "redit-server": "server.js"
