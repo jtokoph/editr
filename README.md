@@ -24,10 +24,10 @@ $ redit-server --editor "mate -w" --background
 
 ```shell
 # Connect with the forwarded port
-ssh remote.host.com -R 32123:localhost:32123
+$ ssh remote.host.com -R 32123:localhost:32123
 
 # Get the client script
-curl localhost:32123 > ./redit.sh; chmod u+x ./redit.sh
+$ curl localhost:32123 > ./redit.sh; chmod u+x ./redit.sh
 
 # Test it out
 $ ./redit.sh testfile.txt
