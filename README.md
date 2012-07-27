@@ -45,7 +45,7 @@ Both will work out of the box with the defaults if TextMate is installed. For ot
 
 ### Server
 
-The server will pick an editor based on a heirarchy of variables (in order of precidence):
+The server will pick an editor based on a hierarchy of variables (in order of precedence):
 
 1. `--editor` command line argument
 2. `REDIT_EDITOR` environment variable
@@ -105,7 +105,7 @@ Because I wanted to use HTTP as the protocol and node makes it easy. I'm also a 
 
 ### Ok smart ass, why HTTP then?
 
-I'm lazy and didn't want to impliment my own protocol, so I thought it would be easier. This way the client could just be cURL.
+I'm lazy and didn't want to implement my own protocol, so I thought it would be easier. This way the client could just be cURL.
 
 ### WTF is the extra "X" that gets appended to the response?
 
