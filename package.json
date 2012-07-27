@@ -1,0 +1,31 @@
+{
+    "name" : "redit",
+    "version" : "0.1.0",
+    "preferGlobal": "true",
+    "description" : "Edit remote files with your local editor",
+    "dependencies" : {
+        "optimist": "0.3.4"
+    },
+    "repository" : {
+        "type" : "git",
+        "url" : "http://github.com/jtokoph/redit-js.git"
+    },
+    "keywords" : [
+        "cli",
+        "remote",
+        "editor",
+        "rmate",
+        "tools"
+    ],
+    "author" : {
+        "name" : "Jason Tokoph",
+        "email" : "jason@tokoph.net",
+        "url" : "http://jasontokoph.com"
+    },
+    "engine" : {
+        "node" : ">=0.8"
+    },
+    "bin": {
+      "redit-server": "server.js"
+    }
+}
