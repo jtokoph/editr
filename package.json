@@ -1,6 +1,6 @@
 {
     "name" : "redit",
-    "version" : "0.1.2",
+    "version" : "0.1.3",
     "preferGlobal": "true",
     "description" : "Edit remote files with your local editor",
     "dependencies" : {
