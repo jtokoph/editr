@@ -1,10 +1,10 @@
 # EDIT Remote files
 
-Edit remote files with TextMate, Sublime Text 2, Chocolat and more!
+Edit remote files with TextMate (mate -w), Sublime Text 2 (subl -w), Chocolat (choc -w) and more!
 
 ## Requirements
 
-**Server:** nodejs
+**Server:** nodejs >= 0.8
 
 **Client:** bash, cURL
 
@@ -88,13 +88,23 @@ Usage: ./editr.sh [-H hostname] [-p port] [-f] file-path
 
 ## Tips
 
-You can edit your ssh config (~/.ssh/config) to setup remote forwarding to every host you connect to:
+#### You can edit your ssh config (~/.ssh/config) to setup remote forwarding to every host you connect to:
 
 ```
 Host *
     RemoteForward 32123 localhost:32123
 Host github.com
     ClearAllForwardings yes
+```
+
+#### Need to pass your custom port through `sudo`?
+
+```shell
+# Use the port argument
+sudo editr -p 42561 file.txt
+
+# Or pass your environment variables (EDITR_PORT)
+sudo -E editr file.txt
 ```
 
 ## Infrequently Asked Questions
