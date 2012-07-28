@@ -6,9 +6,14 @@
     "dependencies" : {
         "optimist": "0.3.4"
     },
+    "homepage": "http://github.com/jtokoph/editr",
     "repository" : {
         "type" : "git",
-        "url" : "http://github.com/jtokoph/editr.git"
+        "url" : "http://github.com/jtokoph/editr"
+    },
+    "bugs": {
+      "email": "jason@tokoph.net",
+      "url": "http://github.com/jtokoph/editr/issues"
     },
     "keywords" : [
         "cli",
