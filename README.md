@@ -1,4 +1,4 @@
-# Remote EDITor
+# EDIT Remote files
 
 Edit remote files with TextMate, Sublime Text 2, Chocolat and more!
 
@@ -14,10 +14,10 @@ Edit remote files with TextMate, Sublime Text 2, Chocolat and more!
 
 ```shell
 # Install
-$ npm -g install redit
+$ npm -g install editr
 
 # Run the daemon
-$ redit-server --editor "mate -w" --background
+$ editr-server --editor "mate -w" --background
 ```
 
 ### On the remote machine
@@ -27,10 +27,10 @@ $ redit-server --editor "mate -w" --background
 $ ssh remote.host.com -R 32123:localhost:32123
 
 # Get the client script
-$ curl localhost:32123 > ./redit.sh; chmod u+x ./redit.sh
+$ curl localhost:32123 > ./editr.sh; chmod u+x ./editr.sh
 
 # Test it out
-$ ./redit.sh testfile.txt
+$ ./editr.sh testfile.txt
 
 # Your editor should open. Type something. Save and close your editor
 
@@ -40,7 +40,7 @@ $ cat testfile.txt
 
 ## Usage
 
-There are two parts to redit: the server and the client.
+There are two parts to editr: the server and the client.
 Both will work out of the box with the defaults if TextMate is installed. For other editors such as Sublime Text 2 and Chocolat, be sure to set the editor option on the server.
 
 ### Server
@@ -48,17 +48,17 @@ Both will work out of the box with the defaults if TextMate is installed. For ot
 The server will pick an editor based on a hierarchy of variables (in order of precedence):
 
 1. `--editor` command line argument
-2. `REDIT_EDITOR` environment variable
+2. `EDITR_EDITOR` environment variable
 3. `EDITOR` environment variable
 4. hard coded `mate -w` default
 
 For security reasons, the server will listen on the local interface by default.
-If you would like to listen on all interfaces, set the `--ip` option or `REDIT_IP` environment variable to `0.0.0.0`.
+If you would like to listen on all interfaces, set the `--ip` option or `EDITR_IP` environment variable to `0.0.0.0`.
 
-The port can be changed via the `--port` argument or `REDIT_PORT` environment variable.
+The port can be changed via the `--port` argument or `EDITR_PORT` environment variable.
 
 ```
-Usage: redit-server [--editor 'EDITOR'] [--ip INTERFACE] [--port PORT] [-b]
+Usage: editr-server [--editor 'EDITOR'] [--ip INTERFACE] [--port PORT] [-b]
 
 Options:
   -e, --editor      Local editor to spawn (don't forget -w)  [default: "mate -w"]
@@ -72,12 +72,12 @@ Options:
 
 Environment variables:
 
-`REDIT_HOST` server hostname to connect to
+`EDITR_HOST` server hostname to connect to
 
-`REDIT_PORT` server port to connect to
+`EDITR_PORT` server port to connect to
 
 ```
-Usage: ./redit.sh [-H hostname] [-p port] [-f] file-path
+Usage: ./editr.sh [-H hostname] [-p port] [-f] file-path
 
  -H  connect to host (default: localhost)
  -p  port number to use for connection (default: 32123)

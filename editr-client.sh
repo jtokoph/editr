@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Heavily copy/pasted from https://github.com/aurora/rmate/blob/master/rmate
 
-host="${REDIT_HOST:-localhost}"
-port="${REDIT_PORT:-32123}"
+host="${EDITR_HOST:-localhost}"
+port="${EDITR_PORT:-32123}"
 hostname=`hostname`
 force=false
 
@@ -37,6 +37,7 @@ while getopts H:p:fh OPTIONS; do
 done
 
 filename="${@:$OPTIND}"
+base=`basename "$filename"`
 
 if [ "$filename" = "" ]; then
     echo "No file given"
@@ -63,7 +64,7 @@ if [ -f "$filename" ] && [ ! -w "$filename" ]; then
     fi
 fi
 
-response=`curl --silent --fail -X POST --data-binary "@$filename" -H "X-Exists: $exists" -H "X-Hostname: $hostname" "$host:$port/$filename"`
+response=`curl --silent --fail -X POST --data-binary "@$filename" -H "X-Exists: $exists" -H "X-File-Name: $base" -H "X-Hostname: $hostname" "$host:$port"`
 
 responseCode=$?
 if [[ responseCode -eq 0 ]]; then

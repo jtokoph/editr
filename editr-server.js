@@ -8,11 +8,11 @@ var http = require('http'),
     .usage('Run a server for remote file editing.\nUsage: $0 [--editor \'EDITOR\'] [--ip INTERFACE] [--port PORT] [-b]')
     .alias('e', 'editor')
     .describe('e', 'Local editor to spawn (don\'t forget -w)')
-    .default('e', process.env['REDIT_EDITOR'] || process.env['EDITOR'] || 'subl -w')
+    .default('e', process.env['EDITR_EDITOR'] || process.env['EDITOR'] || 'subl -w')
     .describe('ip', 'Interface to listen on')
-    .default('ip', process.env['REDIT_IP'] || '127.0.0.1')
+    .default('ip', process.env['EDITR_IP'] || '127.0.0.1')
     .describe('port', 'Port for server to listen on')
-    .default('port', process.env['REDIT_PORT'] || 32123)
+    .default('port', process.env['EDITR_PORT'] || 32123)
     .boolean('b')
     .alias('b', 'background')
     .describe('b', 'Run server as a daemon (background)')
@@ -28,8 +28,9 @@ if (argv.h) {
 }
 
 if (argv.background) {
-    var script = argv['$0'].split(' ');
-    var out = fs.openSync('./reditserver.log', 'a');
+    var script = argv['$0'].split(' '),
+        out = fs.openSync('./editrserver.log', 'a');
+
     // TODO: fork and wait for success message before exiting
     var child = child_process.spawn(script[script.length - 1], ['--editor', argv.editor,'--ip', argv.ip, '--port', argv.port], {
         detached: true,
@@ -54,7 +55,8 @@ if (argv.background) {
                             + Date.now()
                             + '_'
                             + req.headers['x-hostname'].replace(/\//g, '_')
-                            + req.url.replace(/\//g, '_');
+                            + '_'
+                            + req.headers['x-file-name'].replace(/[\/\s]/g, '_');
 
                 // if the file existed before, create it locally
                 if (req.headers['x-exists'] == 'yes') {
@@ -96,11 +98,14 @@ if (argv.background) {
 
         if (req.method == 'POST') {
             // if a post, its an attempt to edit
-            onData('');
-            req.on('data', onData);
+            if (req.headers['content-length'] == 0) {
+                editFile();
+            } else {
+                req.on('data', onData);
+            }
         } else if (req.method == 'GET') {
             // get requests should return the client script
-            fs.readFile(__dirname + '/redit-client.sh', 'utf8', function(err, str) {
+            fs.readFile(__dirname + '/editr-client.sh', 'utf8', function(err, str) {
                 res.writeHead(200, {'Content-Type': 'text/plain'})
                 res.end(str);
             });
