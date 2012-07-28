@@ -28,11 +28,12 @@ if (argv.h) {
 }
 
 if (argv.background) {
-
+    var script = argv['$0'].split(' ');
+    var out = fs.openSync('./reditserver.log', 'a');
     // TODO: fork and wait for success message before exiting
-    var child = child_process.spawn(argv['$0'], ['--editor', '"' + argv.editor + '"','--ip', argv.ip, '--port', argv.port], {
+    var child = child_process.spawn(script[script.length - 1], ['--editor', argv.editor,'--ip', argv.ip, '--port', argv.port], {
         detached: true,
-        stdio: [ 'ignore', 'ignore', 'ignore' ]
+        stdio: [ 'ignore', out, out ]
     });
 
     console.log('Spawned server with pid: ' + child.pid);
