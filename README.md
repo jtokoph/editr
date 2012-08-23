@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/jtokoph/editr.png)](http://travis-ci.org/jtokoph/editr)
 # EDIT Remote files
 
 Edit remote files with TextMate (mate -w), Sublime Text 2 (subl -w), Chocolat (choc -w) and more!
